@@ -27,9 +27,9 @@ else
     else
       if [ $get_prereqs = true ]
       then
-        pwsh -C "\$sess = New-PSSession -HostName $remote_host -Username $remote_username  -KeyFilePath $remote_private_key_path; Invoke-AtomicTest -Session \$sess $test_id -GetPreReqs"
+        pwsh -C "\$sess = New-PSSession -HostName $remote_host -Username $remote_username -KeyFilePath $remote_private_key_path; Invoke-AtomicTest -Session \$sess $test_id -GetPreReqs"
       else
-        pwsh -C "\$sess = New-PSSession -HostName $remote_host -Username $remote_username  -KeyFilePath $remote_private_key_path; Invoke-AtomicTest -Session \$sess $test_id"
+        pwsh -C "\$sess = New-PSSession -HostName $remote_host -Username $remote_username -KeyFilePath $remote_private_key_path; Invoke-AtomicTest -Session \$sess $test_id"
       fi
     fi
   fi
