@@ -11,7 +11,7 @@ RUN apt-get install -y wget software-properties-common && \
     apt-get install -y powershell 
 
 # install atomic red
-SHELL ["pwsh", "-Command" , "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'Continue'; $verbosePreference='Continue';"]
+SHELL [ "pwsh", "-Command" , "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'Continue'; $verbosePreference='Continue';"]
 
 RUN IEX (IWR 'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing); Install-AtomicRedTeam -getAtomics -Force;
 RUN if (!(Test-Path -Path $PROFILE)) { \
@@ -21,8 +21,17 @@ RUN if (!(Test-Path -Path $PROFILE)) { \
 # import the invoke module
 RUN echo 'Import-Module "/root/AtomicRedTeam/invoke-atomicredteam/Invoke-AtomicRedTeam.psd1" -Force;' >> $PROFILE
 
-# set the entrypoint; allows for passing in of arguments to Invoke-AtomicTest
-ENTRYPOINT [ "/usr/bin/pwsh", "-C", "Invoke-AtomicTest" ]
+# env vars
+ENV test_id=
+ENV get_prereqs=false
+# if supplying a dns hostname, be sure to mount a file either at /etc/hosts or /etc/resolv.conf to name resolution
+ENV remote_host=
+ENV remote_username=
+# if accessing a remote host via private key, mount it inside the container at runtime with -v; supply the path to that key via this env variable
+ENV remote_private_key_path=
 
-# todo allow for remote execution against hosts
+# copy the entrypoint script and set it as the container entrypoint
+COPY entrypoint.sh /usr/local/bin/
+ENTRYPOINT [ "entrypoint.sh" ]
+
 # todo allow for saving test results on host or exporting elsewhere
