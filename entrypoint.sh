@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 
-# todo open pwsh to remote host if host is provided
 # run atomic test; get prereqs if desired (defaults to false)
 if [ -z $test_id ]
 then
