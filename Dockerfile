@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 RUN apt-get update -y && apt-get upgrade -y
 
 # install dependencies and powershell for linux
-RUN apt-get install -y wget software-properties-common && \
+RUN apt-get install -y ssh wget software-properties-common && \
     wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb && \
     apt-get update -y && \
@@ -33,5 +33,3 @@ ENV remote_private_key_path=
 # copy the entrypoint script and set it as the container entrypoint
 COPY entrypoint.sh /usr/local/bin/
 ENTRYPOINT [ "entrypoint.sh" ]
-
-# todo allow for saving test results on host or exporting elsewhere
