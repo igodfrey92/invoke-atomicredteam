@@ -14,11 +14,11 @@ Invoke Container
 
 The Dockerfile and entrypoint.sh scripts found in the root directory can be used to create a docker image containing atomic red  atomics and Invoke-Atonmic. The following envionment variables can be defined at runtime:
 
-- test_id
-- get_prereqs
-- remote_host
-- remote_username
-- remote_private_key_path
+- test_id (string)
+- get_prereqs (bool)
+- remote_host (string)
+- remote_username (string)
+- remote_private_key_path (string)
 
 Build the container image by cloning down the repo and running the following command in the root directory:
 
