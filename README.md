@@ -12,7 +12,7 @@ Note: This execution framworks works on Windows, MacOS and Linux. If using on Ma
 
 Invoke Container
 
-The Dockerfile and entrypoint.sh scripts found in the root directory can be used to create a docker image containing atomic red  atomics and Invoke-Atonmic. The following envionment variables can be defined at runtime:
+The Dockerfile and entrypoint.sh scripts found in the root directory can be used to create a docker image containing atomic red  atomics and Invoke-Atomic. The following envionment variables can be defined at runtime:
 
 - test_id (string)
 - get_prereqs (bool)
